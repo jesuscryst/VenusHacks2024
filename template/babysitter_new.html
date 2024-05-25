@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Figma to CSS Example</title>
-  <link rel="stylesheet" href="babysitter_styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='babysitter_styles.css') }}">
 </head>
 <body>
   <!-- If you need a specific rectangle element, add it here -->
@@ -28,8 +28,10 @@
       <textarea name="bio" placeholder="Bio"></textarea><br>
       <input type="file" name="profile_picture"><br>
       <input type="tel" name="contact_number" placeholder="Contact Number"><br>
-      <button type="submit">Submit</button>
+      <button type="submit" onclick="sendData">Submit</button>
     </form>
+    
+
   </div>
 
 <script>
