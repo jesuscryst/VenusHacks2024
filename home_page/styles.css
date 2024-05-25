@@ -22,3 +22,7 @@
     text-align: center;
     vertical-align: center;
 }
+
+.calendargrid:hover {
+    background-color: rgb(255, 244, 222);
+}
