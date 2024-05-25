@@ -20,5 +20,35 @@
   <div class ="about about-3"></div>
 
 
+<!-- Profile creation form -->
+<div id="profileFormContainer">
+    <h2>Create Your Profile</h2>
+    <form id="profileForm">
+      <input type="text" name="name" placeholder="Your Name"><br>
+      <textarea name="bio" placeholder="Bio"></textarea><br>
+      <input type="file" name="profile_picture"><br>
+      <input type="tel" name="contact_number" placeholder="Contact Number"><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+<script>
+document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const response = await fetch('/create-profile', {
+    method: 'POST',
+    body: formData
+    });
+
+    if (response.ok) {
+    alert('Profile created successfully!');
+    } else {
+    alert('Failed to create profile.');
+    }
+});
+</script>
+
 </body>
 </html>

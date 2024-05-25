@@ -86,14 +86,48 @@ body {
     left: 665px;
 }
 
-/* Text styles */
-/* Haven't really used the text */
-.text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the text */
-    font-size: 18px;
-    color: #ffffff; /* White text color */
-  }
 
+/* Profile form container */
+#profileFormContainer {
+    position: absolute;
+    top: 55%; /* Center vertically */
+    left: 1100px; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    background:  rgba(243, 120, 172, 0.34);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile form heading */
+  #profileFormContainer h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Profile form input fields */
+  #profileFormContainer input[type="text"],
+  #profileFormContainer textarea,
+  #profileFormContainer input[type="file"],
+  #profileFormContainer input[type="tel"],
+  #profileFormContainer button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Profile form submit button */
+  #profileFormContainer button {
+    background-color: #e670d1;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Profile form submit button on hover */
+  #profileFormContainer button:hover {
+    background-color: #efefef;
+  }
