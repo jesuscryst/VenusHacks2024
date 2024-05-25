@@ -1,0 +1,24 @@
+.grid-container {
+    display: grid;
+}
+
+.table-calendar {
+    border-collapse: collapse;
+    width: 100%;
+}
+ 
+.table-calendar td {
+    padding: 5px;
+    border: 1px solid #e2e2e2;
+    width: 100px;
+    height: 115px;
+    text-align: left;
+    vertical-align: top;
+}
+.table-calendar th {
+    padding: 5px;
+    border: 1px solid #e2e2e2;
+    width: 100px;
+    text-align: center;
+    vertical-align: center;
+}
