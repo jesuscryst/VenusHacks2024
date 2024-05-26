@@ -14,7 +14,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS profiles(
                name TEXT,
                bio TEXT,
                contact_number TEXT,
-               profile_picture BLOB  -- BLOB (Binary Large Object) to store images
+               profile_picture TEXT
 
 )''')
 

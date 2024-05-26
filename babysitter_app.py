@@ -1,39 +1,46 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, redirect, url_for,flash, session
 import sqlite3
 import json
 import base64
 
 app = Flask(__name__,template_folder='template')
+app.secret_key = '777'  # Replace with a random secret key
 
 @app.route('/')
 def site():
-    return render_template('babysitter_new.html')
+    conn = sqlite3.connect('profiles.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM profiles')
+    profiles = cursor.fetchall()
+    conn.close()
+    return render_template('babysitter_new.html', profiles=profiles)
 
 @app.route('/create-profile', methods = ['POST'])
 def create_profile():
-    request.get_json().name
-    if request.method == 'POST':
-        name = request.form['name']
-        bio = request.form['bio']
-        contact_number = request.form['contact_number']
-        profile_picture = request.files['profile_picture']
 
-        # Save profile data to a sqlite database
+    data = request.get_json()
+    print(data)
+    name = data.get('name')
+    bio = data.get('bio')
+    contact_number = data.get('contact_number')
+    profile_picture: str = data.get('profile_picture')
 
-        save_profile_to_database(name,bio,contact_number,profile_picture)
-
-        return 'Profile created successfully!'
+    if profile_picture != '':
+        save_profile_to_database(name, bio, contact_number, profile_picture)
+        flash('Profile created successfully!')
+        return redirect(url_for('site'))
+    else:
+        flash('Please upload a profile picture.')
+        return redirect(url_for('site'))
 
 def save_profile_to_database(name, bio, contact_number, profile_picture):
 
     conn = sqlite3.connect('profiles.db')
     cursor = conn.cursor()
-    # Convert profile picture data to bytes
-    profile_picture_data = profile_picture.read()
     
     # Insert profile data into the database
     cursor.execute('INSERT INTO profiles (name, bio, contact_number, profile_picture) VALUES (?, ?, ?, ?)',
-                   (name, bio, contact_number, profile_picture_data))
+                   (name, bio, contact_number, profile_picture))
     
     conn.commit()
     conn.close()

@@ -10,10 +10,20 @@
   <!-- If you need a specific rectangle element, add it here -->
   <div class="rectangle-20"></div>
   <div class="header"></div>
-  <div class ="ellipse ellipse-1"></div>
+  <div class ="ellipse ellipse-1">
+    {% for profile in profiles %}
+    <img src ="data:image/jpeg;base64,{{ profile[4] }}" class = "center">
+    {% endfor %}
+  </div>
+
   <div class ="ellipse ellipse-2"></div>
   <div class ="ellipse ellipse-3"></div>
-  <div class ="about about-1"></div>
+  
+  <div class ="about about-1">
+    {% for profile in profiles %}
+    <p>{{ profile[1] }}</p>
+    {% endfor %}
+  </div>
 
   <div class ="about about-2"></div>
 
@@ -21,50 +31,73 @@
   <div class ="scroller"></div>
   <div class ="scroller-mini"></div>
 
+    <!-- Flash message display -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
 <!-- Profile creation form -->
 <div id="profileFormContainer">
     <h2>Create Your Profile</h2>
-    <form id="profileForm">
-      <input type="text" name="name" placeholder="Your Name"><br>
-      <textarea name="bio" placeholder="Bio"></textarea><br>
-      <input type="file" name="profile_picture"><br>
-      <input type="tel" name="contact_number" placeholder="Contact Number"><br>
-      <button type="submit" onclick="sendData">Submit</button>
+    <form id="profileForm" enctype="multipart/form-data">
+      <input type="text" id="name" name="name" placeholder="Your Name"><br>
+      <textarea name="bio" id="bio" placeholder="Bio"></textarea><br>
+      <input type="file" id="file" name="profile_picture" accept="image/*"><br>
+      <input type="tel" id="phone" name="contact_number" placeholder="Contact Number"><br>
+      <button type="submit">Submit</button>
     </form>
   </div>
 <div id="profileList"></div>
 
+<!-- Display profiles -->
+<!--
+<div id="profileList">
+  {% for profile in profiles %}
+    <div class="profile">
+      <img src="data:image/jpeg;base64,{{ profile[4] }}" alt="{{ profile[1] }}"/>
+      <h3>{{ profile[1] }}</h3>
+      <p>{{ profile[2] }}</p>
+      <p>Contact: {{ profile[3] }}</p>
+    </div>
+  {% endfor %}
+  -->
+</div>
+
 <script>
-  
-/*
-function sendInfo() {
-  fetch('', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({name: "name", bio: "bio"})
-  });
-}
-*/
 
 // profile form stuff
-document.getElementById('profileForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      console.log(new Uint8Array(await document.querySelector("#file").files[0].arrayBuffer()));
+      console.log()
 
-    const formData = new FormData(e.target);
-    const response = await fetch('/create-profile', {
-    method: 'POST',
-    body: formData
+      const response = await fetch('/create-profile', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: document.querySelector("#name").value,
+          bio: document.querySelector("#bio").value,
+          contact_number: document.querySelector("#phone").value,
+          profile_picture: btoa(String.fromCharCode.apply(null, new Uint8Array(await document.querySelector("#file").files[0].arrayBuffer())))
+
+        })
+      });
+
+      if (response.ok) {
+        alert('Profile created successfully!');
+      } else {
+        console.log(response);
+        alert('Failed to create profile.');
+      }
     });
-
-    if (response.ok) {
-    alert('Profile created successfully!');
-    } else {
-    alert('Failed to create profile.');
-    }
-});
 </script>
 
 </body>
