@@ -42,15 +42,9 @@ var months = [
 var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 var events = {
-    "5/25/2024": [0, 1],
-    "5/26/2024": [1, 0],
-    "5/27/2024": [0, 0]
-}
-
-var events = {
-    "5/25/2024": [0, 1],
-    "5/26/2024": [1, 0],
-    "5/27/2024": [0, 0]
+    "5/25/2024": [0, 1, 0],
+    "5/26/2024": [1, 0, 0],
+    "5/27/2024": [0, 0, "Haley"]
 }
 
 function generateCalendar(month, year) {
@@ -143,16 +137,16 @@ function showScheduleToday(day) {
     var todayHTML = ''
     if (date in events) {
         if (events[date][0] === 1) {
-            todayHTML = `Your child is with Mom.`
+            todayHTML = `Your child is with Mom.<button>Contact</button>`
         } else if (events[date][1] === 1) {
-            todayHTML = `Your child is with Dad.`
+            todayHTML = `Your child is with Dad.<button>Contact</button>`
         } else {
-            todayHTML = `Your child is with a babysitter. <button>Contact</button>`
+            todayHTML = `Your child is with ${events[date][2]}.<button>Contact</button>`
         }
             
     } else {
         todayHTML = `Oh no! Your child may be unattended. <button onclick="switchActive('babysitterslink')">Find an available babysitter</button><br><br>
-        Is someone else watching your child? Let their other parent know!`
+        Is someone else watching your child? Notify the other parent!`
     }
 
     eventDiv = document.getElementById("eventDIV")
@@ -199,9 +193,9 @@ function showScheduleToday(day) {
     var todayHTML = ''
     if (date in events) {
         if (events[date][0] === 1) {
-            todayHTML = `Your child is with Mom.`
+            todayHTML = `Your child is with Mom. <br> <button onclick="switchActive('messageslink')">Contact</button>`
         } else if (events[date][1] === 1) {
-            todayHTML = `Your child is with Dad.`
+            todayHTML = `Your child is with Dad. <br> <button onclick="switchActive('messageslink')">Contact</button>`
         } else {
             todayHTML = `Your child is with a babysitter. <button>Contact</button>`
         }
@@ -218,7 +212,7 @@ function showScheduleToday(day) {
     <br>
     <div id="schedule_today">${todayHTML}</div>
     <br>
-    <button id="${date}" onclick="showAddEventPage(this.id)">Add Event</button>
+    <button id="${date}" onclick="changeCaretaker(this.id)">Change caretaker</button>
     </div>`
     eventDiv.innerHTML += eventHTML
 
@@ -226,7 +220,8 @@ function showScheduleToday(day) {
 
 function colorCodeCalendar() {
     for (date in events) {
-        if (date.split("/")[0] === currentMonth+1) {
+        console.log(date.split("/")[0], currentMonth+1)
+        if (date.split("/")[0] === (currentMonth+1).toString() && date.split("/")[2] === currentYear.toString()) {
             var day = date.split("/")[1]
             grid = document.getElementById(`${day}`)
             if (events[date][0] === 1) {
@@ -241,15 +236,15 @@ function colorCodeCalendar() {
     }
 }
 
-function showAddEventPage(date) {
+function changeCaretaker(date) {
     eventDiv = document.getElementById("eventDIV")
     eventDiv.innerHTML = ''
     new_eventHTML = `<div id="new_eventDIV" class="shadow-sm p-3 mb-2 rounded">
     <button onclick="showScheduleToday(${date.split("/")[1]})"><</button>
-    <h3>New Event</h3>
-    <input id="event_name" type="text" placeholder="Name">
-    <input id="event_start_time" type="text" placeholder="Start time">
-    <input id="event_end_time" type="text" placeholder="End time">
+    <h4>Who is your child with?</h4>
+    <button>Mom</button>
+    <button>Dad</button>
+    <input type="text" placeholder="other">
     <button onclick="addEventToDict(${date.split("/")[1]}); showScheduleToday(${date.split("/")[1]})">Submit</button>
     </div>`
     eventDiv.innerHTML += new_eventHTML
