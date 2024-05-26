@@ -38,6 +38,15 @@ def save_profile_to_database(name, bio, contact_number, profile_picture):
     conn.commit()
     conn.close()
 
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+"""
+
+
 def profile_fetcher(offset,limit):
     conn = sqlite3.connect('profiles.db')
     cursor = conn.cursor()
@@ -63,6 +72,4 @@ def load_profiles():
     profiles = profile_fetcher(offset, per_page)
     return json.dumps(profiles)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
+"""

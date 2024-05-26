@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Figma to CSS Example</title>
+  <title>Babysitter Finder</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='babysitter_styles.css') }}">
 </head>
 <body>
@@ -35,7 +35,8 @@
 <div id="profileList"></div>
 
 <script>
-
+  
+/*
 function sendInfo() {
   fetch('', {
     method: 'POST',
@@ -46,38 +47,7 @@ function sendInfo() {
     body: JSON.stringify({name: "name", bio: "bio"})
   });
 }
-// Function to load profiles
-async function loadProfiles() {
-  const response = await fetch('/load-profiles');
-  const profiles = await response.json();
-  return profiles;
-}
-
-// Function to render profiles
-function renderProfiles(profiles) {
-  const profileList = document.getElementById('profileList');
-  profileList.innerHTML = ''; // Clear existing profiles
-  profileList.innerHTML = ''; // Clear existing profiles
-  profiles.forEach(profile => {
-    const profileDiv = document.createElement('div');
-    profileDiv.classList.add('profile');
-    profileDiv.innerHTML = `
-      <h3>${profile.name}</h3>
-      <p>${profile.bio}</p>
-      <p>Contact: ${profile.contact_number}</p>
-      <img src="${profile.profile_picture}" alt="${profile.name}'s Profile Picture">
-    `;
-    profileList.appendChild(profileDiv);
-  });
-}
-
-
-//initial loads of profiles
-
-window.onload = async function(){
-  const profiles = await loadProfiles();
-  renderProfiles(profiles)
-}
+*/
 
 // profile form stuff
 document.getElementById('profileForm').addEventListener('submit', async (e) => {
