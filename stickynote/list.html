@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sticky notes</title>
+    <link rel="stylesheet" href="note.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function () {
+    all_notes = $("li a");
+  
+    all_notes.on("keyup", function () {
+      note_title = $(this).find("h2").text();
+      note_content = $(this).find("p").text();
+  
+      item_key = "list_" + $(this).parent().index();
+  
+      data = {
+        title: note_title,
+        content: note_content
+      };
+  
+      window.localStorage.setItem(item_key, JSON.stringify(data));
+    });
+  
+    all_notes.each(function (index) {
+      data = JSON.parse(window.localStorage.getItem("list_" + index));
+  
+      if (data !== null) {
+        note_title = data.title;
+        note_content = data.content;
+  
+        $(this).find("h2").text(note_title);
+        $(this).find("p").text(note_content);
+      }
+    });
+  });
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+<ul>
+  <li>
+    <a href="#" contenteditable>
+      <h2>Title #1</h2>
+      <p>Text Content #1</p>
+    </a>
+  </li>
+  <li>
+    <a href="#" contenteditable>
+      <h2>Title #2</h2>
+      <p>Text Content #2</p>
+    </a>
+  </li>
+  <li>
+    <a href="#" contenteditable>
+      <h2>Title #3</h2>
+      <p>Text Content #3</p>
+    </a>
+  </li>
+  <li>
+    <a href="#" contenteditable>
+      <h2>Title #4</h2>
+      <p>Text Content #4</p>
+    </a>
+  </li>
+  <li>
+    <a href="#" contenteditable>
+      <h2>Title #5</h2>
+      <p>Text Content #5</p>
+    </a>
+  </li>
+  <li>
+    <a href="#" contenteditable>
+      <h2>Title #6</h2>
+      <p>Text Content #6</p>
+    </a>
+  </li>
+
+</ul>

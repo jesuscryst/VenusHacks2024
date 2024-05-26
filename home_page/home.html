@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="calendar.js"></script>
+    <script src="nav_bar.js"></script>
+    <title>Home</title>
+</head>
+<body>
+    <div id="header" class="container" style="display: flex; justify-content: center;">
+        <div class="row">
+            <div class="column" style="display: flex; width: fit-content;">
+                <h1 id="title">Calendar</h1>
+            </div>
+            <div class="column" style="display: flex; width: fit-content;">
+                <nav class="navbar">
+                    <div id="navbar" class="container-fluid" style="display: flex;">
+                        <ul class="nav nav-tabs">
+                            <div id="calendar_nav">
+                                <li class="nav-item">
+                                    <a role="tab" class="nav-link active" id="calendarlink" href="#calendar_nav_content" onclick="switchActive(this.id)">Calendar</a>
+                                </li>
+                            </div>
+                            <div id="reminders_nav">
+                                <li class="nav-item">
+                                    <a role="tab" class="nav-link" id="reminderslink" href="#reminders_nav_content" onclick="switchActive(this.id)">Reminders</a>
+                                </li>
+                            </div>
+                            <div id="messages_nav">
+                                <li class="nav-item">
+                                    <a role="tab" class="nav-link" id="messageslink" href="#messages_nav_content" onclick="switchActive(this.id)">Messages</a>
+                                </li>
+                            </div>
+                            <div id="babysitters_nav">
+                                <li class="nav-item">
+                                    <a role="tab" class="nav-link" id="babysitterslink" href="#babysitters_nav_content" onclick="switchActive(this.id)">Find Babysitters</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="column" style="width: fit-content;">
+                <button>Login/Sign Up</button>
+            </div>
+        </div> 
+    </div>
+
+
+    <div class="tab-content">
+        <div role="tabpanel" id="calendar_nav_content" class="tab-pane show active">
+            <div class="container" style="display: flex; width:100%; margin: 10px;">
+                <div class="row" style="width: 100%;">
+                    <div class="col-md-8" style="display: flex; width: 75%;">
+                        <div class="container">
+                            <div class="row" style="display:fixed;">
+                                <div class="col" style="width: 50%; padding: 0;">
+                                    <h3 id="monthAndYear"></h3>
+                                </div>
+                                <div class="col" style="width: 50%; text-align:right; padding-left: 0">
+                                    <div class="button-container-calendar">
+                                        <button id="previous"
+                                                onclick="previous()">
+                                            ‹
+                                        </button>
+                                        <button id="next"
+                                                onclick="next()">
+                                            ›
+                                        </button>
+                                    </div>
+                                </div>
+                            <div class="row">
+                                <table id="calendar" class="table-calendar">
+                                    <thead id="calendar_day">
+                                        <th id="day0" class="weekday">Sun</th>
+                                        <th id="day1" class="weekday">Mon</th>
+                                        <th id="day2" class="weekday">Tue</th>
+                                        <th id="day3" class="weekday">Wed</th>
+                                        <th id="day4" class="weekday">Thu</th>
+                                        <th id="day5" class="weekday">Fri</th>
+                                        <th id="day6" class="weekday">Sat</th>
+                                    </thead>
+                                    <tbody id="calendar_body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                
+                    <div class="col-md-4" style="display:flex; width: 25%;">
+                        <div class="container">
+                            <div id="new_messageDIV" class="row">
+                                <button id="new_messageButton" onclick="switchActive('messageslink')">
+                                    <div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black;">
+                                        <p>New Messages:</p>
+                                        <p id="new_message">new message popup; if no new messages, clear innerHTML</p>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div id="new_eventDIV" class="row">
+                                <div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black;">
+                                    <h3>Today's Schedule</h3>
+                                    <br>
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="row">
+                                <h3>Reminders</h3>
+                            </div>
+                            <div class="row">
+                                <div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black;">
+                                    <p>sticky notes reminders here</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h5>Find babysitters:</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div role="tabpanel" id="reminders_nav_content" class="tab-pane"></div>
+        <div role="tabpanel" id="messages_nav_content" class="tab-pane"></div>
+        <div role="tabpanel" id="babysitters_nav_content" class="tab-pane"></div>
+    </div>
+</body>
+</html>

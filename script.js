@@ -6,3 +6,10 @@ const btn = document.querySelector("#exampleFormBtn");                      // g
 btn.addEventListener('click', function() {                                  // add an event to the button: whenever the button is pressed, update the greeting name
     greetingText.innerHTML = `Hello, ${inputElement.value}`;                // this is a templated string in Javscript! https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals 
 });
+
+$("#submitmsg").click(function () {
+    var clientmsg = $("#usermsg").val();
+    $.post("post.php", { text: clientmsg });
+    $("#usermsg").val("");
+    return false;
+});
