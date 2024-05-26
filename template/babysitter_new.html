@@ -21,50 +21,60 @@
   <div class ="scroller"></div>
   <div class ="scroller-mini"></div>
 
+    <!-- Flash message display -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
 <!-- Profile creation form -->
 <div id="profileFormContainer">
     <h2>Create Your Profile</h2>
-    <form id="profileForm">
-      <input type="text" name="name" placeholder="Your Name"><br>
-      <textarea name="bio" placeholder="Bio"></textarea><br>
-      <input type="file" name="profile_picture"><br>
-      <input type="tel" name="contact_number" placeholder="Contact Number"><br>
-      <button type="submit" onclick="sendData">Submit</button>
+    <form id="profileForm" enctype="multipart/form-data">
+      <input type="text" id="name" name="name" placeholder="Your Name"><br>
+      <textarea name="bio" id="bio" placeholder="Bio"></textarea><br>
+      <input type="file" id="file" name="profile_picture" accept="image/*"><br>
+      <input type="tel" id="phone" name="contact_number" placeholder="Contact Number"><br>
+      <button type="submit">Submit</button>
     </form>
   </div>
 <div id="profileList"></div>
 
+
 <script>
-  
-/*
-function sendInfo() {
-  fetch('', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({name: "name", bio: "bio"})
-  });
-}
-*/
 
 // profile form stuff
-document.getElementById('profileForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      console.log(new Uint8Array(await document.querySelector("#file").files[0].arrayBuffer()));
+      console.log()
 
-    const formData = new FormData(e.target);
-    const response = await fetch('/create-profile', {
-    method: 'POST',
-    body: formData
+      const response = await fetch('/create-profile', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: document.querySelector("#name").value,
+          bio: document.querySelector("#bio").value,
+          contact_number: document.querySelector("#phone").value,
+          profile_picture: btoa(String.fromCharCode.apply(null, new Uint8Array(await document.querySelector("#file").files[0].arrayBuffer())))
+
+        })
+      });
+
+      if (response.ok) {
+        alert('Profile created successfully!');
+      } else {
+        console.log(response);
+        alert('Failed to create profile.');
+      }
     });
-
-    if (response.ok) {
-    alert('Profile created successfully!');
-    } else {
-    alert('Failed to create profile.');
-    }
-});
 </script>
 
 </body>
