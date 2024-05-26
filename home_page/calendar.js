@@ -193,15 +193,15 @@ function showScheduleToday(day) {
     var todayHTML = ''
     if (date in events) {
         if (events[date][0] === 1) {
-            todayHTML = `Your child is with Mom. <br> <button onclick="switchActive('messageslink')">Contact</button>`
+            todayHTML = `Your child is with Mom. <br> <button onclick="redirect()" style="background-color: white; color:black; !important;"><u>Contact</u></button>`
         } else if (events[date][1] === 1) {
-            todayHTML = `Your child is with Dad. <br> <button onclick="switchActive('messageslink')" style="background-color: none !important;">Contact</button>`
+            todayHTML = `Your child is with Dad. <br> <button onclick="redirect()" style="background-color: white; color:black; !important;"><u>Contact</u></button>`
         } else {
-            todayHTML = `Your child is with ${events[date][2]}. <button onclick="switchActive('messageslink')">Contact</button>`
+            todayHTML = `Your child is with ${events[date][2]}. <br> <button onclick="redirect()" style="background-color: white; color:black; !important;"><u>Contact</u></button>`
         }
             
     } else {
-        todayHTML = `Oh no! Your child may be unattended. <button onclick="switchActive('babysitterslink')">Find an available babysitter</button><br><br>
+        todayHTML = `Oh no! Your child may be unattended. <button onclick="switchActive('babysitterslink')" style="background-color: white; color:black; !important;"><u>Find an available babysitter</u></button><br><br>
         Is someone else watching your child? Let their other parent know!`
     }
 
@@ -293,3 +293,7 @@ function sendData() {
         } 
     }); 
 } 
+
+function redirect() {
+    window.open("http://localhost:8000/chat.php", '_blank')
+}
