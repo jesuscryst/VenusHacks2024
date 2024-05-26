@@ -18,7 +18,8 @@
   <div class ="about about-2"></div>
 
   <div class ="about about-3"></div>
-
+  <div class ="scroller"></div>
+  <div class ="scroller-mini"></div>
 
 <!-- Profile creation form -->
 <div id="profileFormContainer">
@@ -30,11 +31,55 @@
       <input type="tel" name="contact_number" placeholder="Contact Number"><br>
       <button type="submit" onclick="sendData">Submit</button>
     </form>
-    
-
   </div>
+<div id="profileList"></div>
 
 <script>
+
+function sendInfo() {
+  fetch('', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({name: "name", bio: "bio"})
+  });
+}
+// Function to load profiles
+async function loadProfiles() {
+  const response = await fetch('/load-profiles');
+  const profiles = await response.json();
+  return profiles;
+}
+
+// Function to render profiles
+function renderProfiles(profiles) {
+  const profileList = document.getElementById('profileList');
+  profileList.innerHTML = ''; // Clear existing profiles
+  profileList.innerHTML = ''; // Clear existing profiles
+  profiles.forEach(profile => {
+    const profileDiv = document.createElement('div');
+    profileDiv.classList.add('profile');
+    profileDiv.innerHTML = `
+      <h3>${profile.name}</h3>
+      <p>${profile.bio}</p>
+      <p>Contact: ${profile.contact_number}</p>
+      <img src="${profile.profile_picture}" alt="${profile.name}'s Profile Picture">
+    `;
+    profileList.appendChild(profileDiv);
+  });
+}
+
+
+//initial loads of profiles
+
+window.onload = async function(){
+  const profiles = await loadProfiles();
+  renderProfiles(profiles)
+}
+
+// profile form stuff
 document.getElementById('profileForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
