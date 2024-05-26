@@ -47,13 +47,13 @@
 </head>
 <body>
     <div id="header" class="containe-xxl" style="display: flex; justify-content: center; margin:0; width: 100%; padding:0">
-        <div class="row">
-            <div class="column" style="display: flex; width: fit-content;">
+        <div class="row" style="width: 100%;">
+            <div class="column" style="display: flex; width: 50%;">
                 <h1 id="title">Calendar</h1>
             </div>
             <div class="column" style="display: flex; width: fit-content;">
-                <nav class="navbar" style="padding:0">
-                    <div id="navbar" class="container-fluid" style="display: flex; justify-content:end">
+                <nav class="navbar" style="padding:0; padding-top: 8px;">
+                    <div id="navbar" class="container-fluid" style="display: flex; justify-content:end; width:100%">
                         <ul class="nav nav-tabs">
                             <div id="calendar_nav">
                                 <li class="nav-item">
@@ -80,7 +80,7 @@
                 </nav>
             </div>
             <div class="column" style="width: fit-content; display: flex;">
-                <button>Login/Sign Up</button>
+                <button style="padding:0">Login/Sign Up</button>
             </div>
         </div> 
     </div>
@@ -99,11 +99,11 @@
                                 <div class="col" style="width: 50%; text-align:right; padding-left: 0">
                                     <div class="button-container-calendar">
                                         <button id="previous"
-                                                onclick="previous()" style="padding:10px; background-color: white; color:black; !important;">
+                                                onclick="previous()" style="padding:10px; background-color: white; color:black;">
                                             <b><u><</u></b>
                                         </button>
                                         <button id="next"
-                                                onclick="next()" style="padding:10px; background-color: white; color:black; !important;">
+                                                onclick="next()" style="padding:10px; background-color: white; color:black;">
                                             <b><u>></u></b>
                                         </button>
                                     </div>
@@ -126,9 +126,9 @@
                     </div>
                     </div>
                 
-                    <div class="col-md-4" style="display:flex; width: 25%;">
+                    <div class="col-md-4" style="display:flex; width: 25%; padding-top:50px;">
                         <div class="container">
-                            <div id="eventDIV" class="row" style="justify-content: center; text-align:center;">
+                            <div id="eventDIV" class="row" style="justify-content: center; text-align:left;">
                                 <div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black;">
                                     <h3>Schedule</h3>
                                     <br>

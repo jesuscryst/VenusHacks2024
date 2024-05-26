@@ -207,7 +207,7 @@ function showScheduleToday(day) {
 
     eventDiv = document.getElementById("eventDIV")
     eventDiv.innerHTML = ''
-    eventHTML = `<div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black;">
+    eventHTML = `<div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black; text-align:center;">
     <h3>${date}</h3>
     <br>
     <div id="schedule_today">${todayHTML}</div>
@@ -239,12 +239,13 @@ function updateCaretaker(date) {
     eventDiv = document.getElementById("eventDIV")
     eventDiv.innerHTML = ''
     new_eventHTML = `<div id="new_eventDIV" class="shadow-sm p-3 mb-2 rounded">
-    <button onclick="showScheduleToday(${date.split("/")[1]})"><</button>
+    <button onclick="showScheduleToday(${date.split("/")[1]})" style="padding:10px; background-color: white; color:black; !important;"><b><u><</u></b></button>
     <h4>Who is your child with?</h4>
-    <button id="submit_mom" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})">Mom</button>
-    <button id="submit_dad" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})">Dad</button>
-    <input id="input_caretaker" type="text" placeholder="other">
-    <button id="submit_caretaker" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})">Submit</button>
+    <button id="submit_mom" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})" style="background-color: pink; color: black; padding:10px">Mom</button>
+    <button id="submit_dad" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})" style="background-color: lightblue; color: black; padding:10px">Dad</button>
+    <br>
+    <input id="input_caretaker" type="text" placeholder="other" style="margin-top:20px;">
+    <button id="submit_caretaker" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})" style="padding:10px; padding-top:5px; padding-bottom:5px;">Submit</button>
     </div>`
     eventDiv.innerHTML += new_eventHTML
 }
