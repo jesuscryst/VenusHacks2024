@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babysitter Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='babysitter_styles.css') }}">
+</head>
+<body>
+  <!-- If you need a specific rectangle element, add it here -->
+  <div class="rectangle-20"></div>
+  <div class="header"></div>
+  <div class ="ellipse ellipse-1"></div>
+  <div class ="ellipse ellipse-2"></div>
+  <div class ="ellipse ellipse-3"></div>
+  <div class ="about about-1"></div>
+
+  <div class ="about about-2"></div>
+
+  <div class ="about about-3"></div>
+  <div class ="scroller"></div>
+  <div class ="scroller-mini"></div>
+
+<!-- Profile creation form -->
+<div id="profileFormContainer">
+    <h2>Create Your Profile</h2>
+    <form id="profileForm">
+      <input type="text" name="name" placeholder="Your Name"><br>
+      <textarea name="bio" placeholder="Bio"></textarea><br>
+      <input type="file" name="profile_picture"><br>
+      <input type="tel" name="contact_number" placeholder="Contact Number"><br>
+      <button type="submit" onclick="sendData">Submit</button>
+    </form>
+  </div>
+<div id="profileList"></div>
+
+<script>
+  
+/*
+function sendInfo() {
+  fetch('', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({name: "name", bio: "bio"})
+  });
+}
+*/
+
+// profile form stuff
+document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const response = await fetch('/create-profile', {
+    method: 'POST',
+    body: formData
+    });
+
+    if (response.ok) {
+    alert('Profile created successfully!');
+    } else {
+    alert('Failed to create profile.');
+    }
+});
+</script>
+
+</body>
+</html>

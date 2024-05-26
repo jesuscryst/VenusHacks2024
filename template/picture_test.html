@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma to CSS Example</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='babysitter_styles.css') }}">
+</head>
+<body>
+  <!-- If you need a specific rectangle element, add it here -->
+  <div class="rectangle-20"></div>
+  <div class="header"></div>
+  <div class="ellipse ellipse-1"></div>
+  <div class="ellipse ellipse-2"></div>
+  <div class="ellipse ellipse-3"></div>
+  <div class="about about-1"></div>
+
+  <div class="about about-2"></div>
+
+  <div class="about about-3"></div>
+  <div class="scroller"></div>
+  <div class="scroller-mini"></div>
+
+  <!-- Profile list container -->
+  <div id="profileList"></div>
+
+  <!-- Profile creation form -->
+  <div id="profileFormContainer">
+    <h2>Create Your Profile</h2>
+    <form id="profileForm">
+      <input type="text" name="name" placeholder="Your Name"><br>
+      <textarea name="bio" placeholder="Bio"></textarea><br>
+      <input type="file" name="profile_picture"><br>
+      <input type="tel" name="contact_number" placeholder="Contact Number"><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Function to load profiles
+    async function loadProfiles() {
+      const response = await fetch('/load-profiles');
+      const profilePictures = await response.json();
+      return profilePictures;
+    }
+
+    // Function to render profile pictures
+    function renderProfilePictures(profilePictures) {
+      const profileList = document.getElementById('profileList');
+      profileList.innerHTML = ''; // Clear existing profile pictures
+      profilePictures.forEach(profilePictureData => {
+        const profileImg = document.createElement('img');
+        profileImg.src = 'data:image/jpeg;base64,' + profilePictureData; // Assuming the profile pictures are JPEG
+        profileList.appendChild(profileImg);
+      });
+    }
+
+    // Initial load of profile pictures
+    window.onload = async function () {
+      const profilePictures = await loadProfiles();
+      renderProfilePictures(profilePictures);
+    };
+
+    // Profile form submission
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const response = await fetch('/create-profile', {
+        method: 'POST',
+        body: formData
+      });
+      if (response.ok) {
+        alert('Profile created successfully!');
+        // Reload profile pictures after submission
+        const profilePictures = await loadProfiles();
+        renderProfilePictures(profilePictures);
+      } else {
+        alert('Failed to create profile.');
+      }
+    });
+  </script>
+</body>
+</html>

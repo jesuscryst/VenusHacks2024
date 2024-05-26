@@ -1,0 +1,156 @@
+/* Full-page background styles */
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #D9D9D9;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Rectangle styles */
+  .rectangle-20 {
+    position: absolute;
+    width: 791px;
+    height: 460px;
+    background: inherit; /* Use the same background as the body */
+  }
+
+/* Header styles */
+.header {
+    position: absolute;
+    width: 100%;
+    height: 107px;
+    top: 0; /* Position at the top of the viewport */
+    background: rgba(221, 136, 172, 0.34);
+  }
+
+/* Ellipse main*/
+
+.ellipse {
+
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Ensures an elliptical shape */
+    background: rgba(221, 136, 172, 0.34);
+
+}
+
+/* Ellipse 1 */
+.ellipse-1 {
+    top: 200px;
+    left: 70px;
+  }
+
+/* Ellipse 2 */
+.ellipse-2 {
+    top: 200px;
+    left: 390px;
+  }
+
+/* Ellipse 3 */
+.ellipse-3 {
+    top: 200px;
+    left: 700px;
+  }
+
+/* Rectangle main */
+
+.about{
+
+    position: absolute;
+    width: 210px;
+    height: 230px;
+
+    background: rgba(221, 136, 172, 0.34);
+}
+
+/* about 1 */
+
+.about-1{
+    top:350px;
+    left: 40px;
+}
+
+.about-2{
+    top:350px;
+    left: 350px;
+}
+
+.about-3{
+    top:350px;
+    left: 665px;
+}
+
+.scroller{
+    /* Rectangle 35 */
+
+  position: absolute;
+  left: 970px;
+  width: 14px;
+  height: 400px;
+  top: 30%;
+  background: rgba(197, 46, 110, 0.34);
+
+
+}
+.scroller-mini{
+  /* Rectangle 36 */
+
+  position: absolute;
+  width: 14px;
+  top: 35%;
+  height: 46px;
+  left: 970px;
+
+  background: #E7DFDF;
+
+}
+/* Profile form container */
+#profileFormContainer {
+    position: absolute;
+    top: 55%; /* Center vertically */
+    left: 1150px; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    background:  rgba(243, 120, 172, 0.34);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile form heading */
+  #profileFormContainer h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Profile form input fields */
+  #profileFormContainer input[type="text"],
+  #profileFormContainer textarea,
+  #profileFormContainer input[type="file"],
+  #profileFormContainer input[type="tel"],
+  #profileFormContainer button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Profile form submit button */
+  #profileFormContainer button {
+    background-color: #e670d1;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Profile form submit button on hover */
+  #profileFormContainer button:hover {
+    background-color: #efefef;
+  }
