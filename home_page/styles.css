@@ -111,3 +111,209 @@ button:hover {
 #schedule_today {
     margin-top: 10px;
 }
+
+#babysitters_stylesheet body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #D9D9D9;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    }
+    
+    /* Rectangle styles */
+#babysitters_stylesheet .rectangle-20 {
+    position: absolute;
+    width: 791px;
+    height: 460px;
+    background: inherit; /* Use the same background as the body */
+    }
+
+/* Header styles */
+#babysitters_stylesheet .header {
+    position: absolute;
+    width: 100%;
+    height: 107px;
+    top: 0; /* Position at the top of the viewport */
+    background: rgba(221, 136, 172, 0.34);
+    }
+    #babysitters_stylesheet .ellipse {
+
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Ensures an elliptical shape */
+    background: rgba(221, 136, 172, 0.34);
+    align-items: center;
+
+}
+
+/* Ellipse 1 */
+#babysitters_stylesheet .ellipse-1 {
+    top: 200px;
+    left: 70px;
+    }
+
+/* Ellipse 2 */
+#babysitters_stylesheet .ellipse-2 {
+    top: 200px;
+    left: 390px;
+    }
+
+/* Ellipse 3 */
+#babysitters_stylesheet .ellipse-3 {
+    top: 200px;
+    left: 700px;
+    }
+
+    /* Rectangle main */
+
+    #babysitters_stylesheet .about{
+
+    position: absolute;
+    width: 210px;
+    height: 230px;
+    background: rgba(221, 136, 172, 0.34);
+    text-align: center;
+}
+
+/* about 1 */
+
+#babysitters_stylesheet .about-1{
+    top:350px;
+    left: 40px;
+}
+
+#babysitters_stylesheet .about-2{
+    top:350px;
+    left: 350px;
+}
+
+#babysitters_stylesheet .about-3{
+    top:350px;
+    left: 665px;
+}
+
+/* Text styles */
+/* Haven't really used the text */
+#babysitters_stylesheet .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    font-size: 18px;
+    color: #ffffff; /* White text color */
+    }
+
+    #babysitters_stylesheet img {
+    position: absolute;
+    clip-path: circle();
+    width: 300px;
+    height: 120px;
+    object-fit: cover;
+}
+
+#babysitters_stylesheet .center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    }
+
+#babysitters_stylesheet p {
+    font-family: 'Arial';
+    color:#fff;
+}
+
+
+#reminders_stylesheet body {
+
+    margin: 20px auto;
+  
+    font-family: 'Arial';
+  
+    background:#D7B0C1;
+  
+    color:#fff;
+  
+  }
+  
+#reminders_stylesheet  *{
+  
+    margin:0;
+  
+    padding:0;
+  
+  }
+  
+  #reminders_stylesheet h2 {
+  
+    font-weight: bold;
+  
+    font-size: 2rem;
+  
+  }
+  
+  #reminders_stylesheet p {
+  
+    font-size: 1rem;
+    font-family: 'Arial';
+    font-weight: normal;
+  
+  }
+  
+  #reminders_stylesheet ul,li{
+  
+    list-style:none;
+  
+  }
+  
+  #reminders_stylesheet ul{
+  
+    display: flex;
+  
+    flex-wrap: wrap;
+  
+    justify-content: center;
+  
+  }
+  
+  #reminders_stylesheet ul li a{
+  
+    text-decoration:none;
+  
+    color:#000;
+  
+    background:#D9D9D9;
+  
+    display:block;
+  
+    height:10em;
+  
+    width:10em;
+  
+    padding:1em;
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    transition: transform .15s linear;
+  }
+  
+  #reminders_stylesheet ul li{
+  
+    margin:1em;
+  
+  }
+  
+  #reminders_stylesheet ul li a:hover,ul li a:focus{
+
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+  
+    transform: scale(1.25);
+  
+    position:relative;
+  
+    z-index:5;
+  
+  }
+  

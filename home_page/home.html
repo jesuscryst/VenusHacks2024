@@ -5,8 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
     <script src="calendar.js"></script>
     <script src="nav_bar.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function () {
+    all_notes = $("li a");
+  
+    all_notes.on("keyup", function () {
+      note_title = $(this).find("h2").text();
+      note_content = $(this).find("p").text();
+  
+      item_key = "list_" + $(this).parent().index();
+  
+      data = {
+        title: note_title,
+        content: note_content
+      };
+  
+      window.localStorage.setItem(item_key, JSON.stringify(data));
+    });
+  
+    all_notes.each(function (index) {
+      data = JSON.parse(window.localStorage.getItem("list_" + index));
+  
+      if (data !== null) {
+        note_title = data.title;
+        note_content = data.content;
+  
+        $(this).find("h2").text(note_title);
+        $(this).find("p").text(note_content);
+      }
+    });
+  });
+    </script>
     <title>Home</title>
 </head>
 <body>
@@ -36,7 +72,7 @@
                             </div>
                             <div id="babysitters_nav">
                                 <li class="nav-item">
-                                    <a role="tab" class="nav-link" id="babysitterslink" href="VenusHacks2024/babysitter_new.html" onclick="switchActive(this.id)">Find Babysitters</a>
+                                    <a role="tab" class="nav-link" id="babysitterslink" href="#babysitters_nav_content" onclick="switchActive(this.id)">Find Babysitters</a>
                                 </li>
                             </div>
                         </ul>
@@ -63,11 +99,11 @@
                                 <div class="col" style="width: 50%; text-align:right; padding-left: 0">
                                     <div class="button-container-calendar">
                                         <button id="previous"
-                                                onclick="previous()">
+                                                onclick="previous()" style="padding:10px">
                                             ‹
                                         </button>
                                         <button id="next"
-                                                onclick="next()">
+                                                onclick="next()" style="padding:10px">
                                             ›
                                         </button>
                                     </div>
@@ -102,16 +138,6 @@
                                 </div>
 
                             </div>
-                            
-                            <div class="row">
-                                <h3>Reminders</h3>
-                            </div>
-                            <div class="row">
-                                <div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black;">
-                                    <p>sticky notes reminders here</p>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
 
@@ -122,11 +148,88 @@
 
 
 
-        <div role="tabpanel" id="reminders_nav_content" class="tab-pane"></div>
+        <div role="tabpanel" id="reminders_nav_content" class="tab-pane">
+            <span id="reminders_stylesheet">
+                <ul>
+                    <li>
+                      <a href="#" contenteditable>
+                        <h2>Title #1</h2>
+                        <p>Text Content #1</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" contenteditable>
+                        <h2>Title #2</h2>
+                        <p>Text Content #2</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" contenteditable>
+                        <h2>Title #3</h2>
+                        <p>Text Content #3</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" contenteditable>
+                        <h2>Title #4</h2>
+                        <p>Text Content #4</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" contenteditable>
+                        <h2>Title #5</h2>
+                        <p>Text Content #5</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" contenteditable>
+                        <h2>Title #6</h2>
+                        <p>Text Content #6</p>
+                      </a>
+                    </li>
+                  
+                  </ul>
+            </span>
+
+            
+
+
+
+
+
+
+        </div>
         <div role="tabpanel" id="messages_nav_content" class="tab-pane">
             <a href="http://localhost:8000/chat.php"><button>Go to PHP Page</button></a>
         </div>
-        <div role="tabpanel" id="babysitters_nav_content" class="tab-pane"></div>
+
+        <div role="tabpanel" id="babysitters_nav_content" class="tab-pane">
+            <span id="babysitters_stylesheet">
+                <div class ="ellipse ellipse-1">
+                    <img src="default_pfp.png" class="center">
+                </div>
+    
+                <div class ="ellipse ellipse-2">
+                    <img src="default_pfp.png" class="center">
+                </div>
+    
+                <div class ="ellipse ellipse-3">
+                    <img src="default_pfp.png" class="center">
+                </div>
+                
+                <div class ="about about-1">
+                    <p>blank bio...</p>
+                </div>
+            
+                <div class ="about about-2">
+                    <p>blank bio...</p>
+                </div>
+            
+                <div class ="about about-3">
+                    <p>blank bio...</p>
+                </div>
+            </span>
+        </div>
     </div>
 </body>
 </html>

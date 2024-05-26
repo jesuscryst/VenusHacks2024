@@ -195,7 +195,7 @@ function showScheduleToday(day) {
         if (events[date][0] === 1) {
             todayHTML = `Your child is with Mom. <br> <button onclick="switchActive('messageslink')">Contact</button>`
         } else if (events[date][1] === 1) {
-            todayHTML = `Your child is with Dad. <br> <button onclick="switchActive('messageslink')">Contact</button>`
+            todayHTML = `Your child is with Dad. <br> <button onclick="switchActive('messageslink')" style="background-color: none !important;">Contact</button>`
         } else {
             todayHTML = `Your child is with ${events[date][2]}. <button onclick="switchActive('messageslink')">Contact</button>`
         }
