@@ -41,7 +41,7 @@
     margin: auto;
     margin-top: 2rem;
     letter-spacing: 0.5px;
-    height: 80%;
+    text-align: center;
   }
   #loginform {
     margin: 0 auto;
@@ -64,18 +64,45 @@
     font-size: 1.4rem;
     font-weight: bold;
   }
+
+  .msg-header {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 530px;
+    height: 10%;
+    border-bottom: none;
+    display: inline-block;
+    background-color: #efefef;
+    margin: 0 auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  .container1 {
+    width: 270px;
+    height: auto; 
+    float: left;
+    margin: 0;
+  }
+
+  .active {
+    float: left;
+    color: black;
+    font-weight: bold;
+    margin: 0 0 0 5px;
+    height: 10%;
+  }
   
   #chatbox {
     text-align: left;
     margin: 0 auto;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     padding: 10px;
     background: #fff;
     height: 300px;
     width: 530px;
     border: 1px solid #000000;
     overflow: auto;
-    border-radius: 4px;
     border-bottom: 4px solid #000000;
   }
   
@@ -108,17 +135,11 @@
   
   #menu {
     padding: 15px 25px;
-    display: flex;
-  }
-  
-  #menu p.welcome {
-    color: #dd00ff;
-    flex: 1;
   }
   
   a#exit {
     color: white;
-    background: rgb(255, 0, 111);
+    background: #dd00ff;
     padding: 4px 8px;
     border-radius: 4px;
     font-weight: bold;

@@ -46,10 +46,17 @@ function loginForm(){
     ?>
         <div id="wrapper">
             <div id="menu">
-                <p class="welcome">Hello, <b><?php echo $_SESSION['name']; ?></b></p>
                 <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
             </div>
+            <div class="msg-header">
+                <div class="container1">
+                    <div class="active">
+                        <b><?php echo $_SESSION['name']; ?></b>
+                    </div>
+                </div>
+            </div>
             <div id="chatbox">
+
             <?php
             if(file_exists("log.html") && filesize("log.html") > 0){
                 $contents = file_get_contents("log.html");          
