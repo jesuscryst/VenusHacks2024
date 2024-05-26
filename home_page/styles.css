@@ -29,7 +29,7 @@
 
 /* General body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Andika !important;
     background-color: #f8f9fa;
     margin: 0;
     padding: 0;
@@ -37,7 +37,7 @@ body {
 
 /* Header styling */
 #header {
-    background-color: #343a40;
+    background-color: #e97fab;
     color: #fff;
     padding: 20px;
     display: flex;
@@ -56,7 +56,7 @@ body {
 
 .nav-tabs .nav-link {
     color: #fff;
-    background-color: #343a40;
+    background-color:#e97fab;
     border: 1px solid transparent;
 }
 
@@ -67,7 +67,7 @@ body {
 
 /* Button styling */
 button {
-    background-color: #007bff;
+    background-color: #50d4b3;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -91,7 +91,7 @@ button:hover {
 }
 
 .weekday {
-    background-color: #007bff;
+    background-color: #50d4b3;
     color: #fff;
 }
 
