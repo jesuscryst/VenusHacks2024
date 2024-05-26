@@ -8,7 +8,12 @@ app.secret_key = '777'  # Replace with a random secret key
 
 @app.route('/')
 def site():
-    return render_template('babysitter_new.html')
+    conn = sqlite3.connect('profiles.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM profiles')
+    profiles = cursor.fetchall()
+    conn.close()
+    return render_template('babysitter_new.html', profiles=profiles)
 
 @app.route('/create-profile', methods = ['POST'])
 def create_profile():

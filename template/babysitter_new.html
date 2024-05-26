@@ -10,10 +10,20 @@
   <!-- If you need a specific rectangle element, add it here -->
   <div class="rectangle-20"></div>
   <div class="header"></div>
-  <div class ="ellipse ellipse-1"></div>
+  <div class ="ellipse ellipse-1">
+    {% for profile in profiles %}
+    <img src ="data:image/jpeg;base64,{{ profile[4] }}" class = "center">
+    {% endfor %}
+  </div>
+
   <div class ="ellipse ellipse-2"></div>
   <div class ="ellipse ellipse-3"></div>
-  <div class ="about about-1"></div>
+  
+  <div class ="about about-1">
+    {% for profile in profiles %}
+    <p>{{ profile[1] }}</p>
+    {% endfor %}
+  </div>
 
   <div class ="about about-2"></div>
 
@@ -45,6 +55,19 @@
   </div>
 <div id="profileList"></div>
 
+<!-- Display profiles -->
+<!--
+<div id="profileList">
+  {% for profile in profiles %}
+    <div class="profile">
+      <img src="data:image/jpeg;base64,{{ profile[4] }}" alt="{{ profile[1] }}"/>
+      <h3>{{ profile[1] }}</h3>
+      <p>{{ profile[2] }}</p>
+      <p>Contact: {{ profile[3] }}</p>
+    </div>
+  {% endfor %}
+  -->
+</div>
 
 <script>
 
