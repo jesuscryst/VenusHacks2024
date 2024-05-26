@@ -31,12 +31,12 @@
                             </div>
                             <div id="messages_nav">
                                 <li class="nav-item">
-                                    <a role="tab" class="nav-link" id="messageslink" href="#messages_nav_content" onclick="switchActive(this.id)">Messages</a>
+                                    <a role="tab" class="nav-link" id="messageslink" href="chat/chat.php">Messages</a>
                                 </li>
                             </div>
                             <div id="babysitters_nav">
                                 <li class="nav-item">
-                                    <a role="tab" class="nav-link" id="babysitterslink" href="#babysitters_nav_content" onclick="switchActive(this.id)">Find Babysitters</a>
+                                    <a role="tab" class="nav-link" id="babysitterslink" href="VenusHacks2024/babysitter_new.html" onclick="switchActive(this.id)">Find Babysitters</a>
                                 </li>
                             </div>
                         </ul>
@@ -101,11 +101,13 @@
                                 </button>
                             </div>
 
-                            <div id="new_eventDIV" class="row">
+                            <div id="eventDIV" class="row">
                                 <div class="shadow-sm p-3 mb-2 rounded" style="border: solid 1px; border-color:gainsboro; border-radius: 30px; box-shadow: black;">
-                                    <h3>Today's Schedule</h3>
+                                    <h3>Schedule</h3>
                                     <br>
-
+                                    <div id="schedule_today"></div>
+                                    <br>
+                                    <button onclick="showAddEventPage()">Add Event</button>
                                 </div>
 
                             </div>
@@ -132,8 +134,12 @@
 
 
 
-        <div role="tabpanel" id="reminders_nav_content" class="tab-pane"></div>
-        <div role="tabpanel" id="messages_nav_content" class="tab-pane"></div>
+        <div role="tabpanel" id="reminders_nav_content" class="tab-pane">
+
+        </div>
+        <div role="tabpanel" id="messages_nav_content" class="tab-pane">
+
+        </div>
         <div role="tabpanel" id="babysitters_nav_content" class="tab-pane"></div>
     </div>
 </body>
