@@ -42,8 +42,8 @@ var months = [
 var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 var events = {
-    "5/25/2024": [0, 1, 0],
-    "5/26/2024": [1, 0, 0],
+    "5/25/2024": [0, 1, ""],
+    "5/26/2024": [1, 0, ""],
     "5/27/2024": [0, 0, "Haley"]
 }
 
@@ -197,7 +197,7 @@ function showScheduleToday(day) {
         } else if (events[date][1] === 1) {
             todayHTML = `Your child is with Dad. <br> <button onclick="switchActive('messageslink')">Contact</button>`
         } else {
-            todayHTML = `Your child is with a babysitter. <button>Contact</button>`
+            todayHTML = `Your child is with ${events[date][2]}. <button onclick="switchActive('messageslink')">Contact</button>`
         }
             
     } else {
@@ -212,7 +212,7 @@ function showScheduleToday(day) {
     <br>
     <div id="schedule_today">${todayHTML}</div>
     <br>
-    <button id="${date}" onclick="changeCaretaker(this.id)">Change caretaker</button>
+    <button id="${date}" onclick="updateCaretaker(this.id)">Update caretaker</button>
     </div>`
     eventDiv.innerHTML += eventHTML
 
@@ -220,7 +220,6 @@ function showScheduleToday(day) {
 
 function colorCodeCalendar() {
     for (date in events) {
-        console.log(date.split("/")[0], currentMonth+1)
         if (date.split("/")[0] === (currentMonth+1).toString() && date.split("/")[2] === currentYear.toString()) {
             var day = date.split("/")[1]
             grid = document.getElementById(`${day}`)
@@ -236,18 +235,37 @@ function colorCodeCalendar() {
     }
 }
 
-function changeCaretaker(date) {
+function updateCaretaker(date) {
     eventDiv = document.getElementById("eventDIV")
     eventDiv.innerHTML = ''
     new_eventHTML = `<div id="new_eventDIV" class="shadow-sm p-3 mb-2 rounded">
     <button onclick="showScheduleToday(${date.split("/")[1]})"><</button>
     <h4>Who is your child with?</h4>
-    <button>Mom</button>
-    <button>Dad</button>
-    <input type="text" placeholder="other">
-    <button onclick="addEventToDict(${date.split("/")[1]}); showScheduleToday(${date.split("/")[1]})">Submit</button>
+    <button id="submit_mom" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})">Mom</button>
+    <button id="submit_dad" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})">Dad</button>
+    <input id="input_caretaker" type="text" placeholder="other">
+    <button id="submit_caretaker" onclick="updateCaretakerinDict(${date.split("/")[1]}, this.id); showScheduleToday(${date.split("/")[1]})">Submit</button>
     </div>`
     eventDiv.innerHTML += new_eventHTML
+}
+
+function updateCaretakerinDict(day, id) {
+    this_date = `${currentMonth+1}/${day}/${currentYear}`
+    switch(id) {
+        case "submit_mom":
+            events[this_date] = [1, 0, '']
+            colorCodeCalendar()
+            break;
+        case "submit_dad":
+            events[this_date] = [0, 1, '']
+            colorCodeCalendar()
+            break;
+        case "submit_caretaker":
+            caretaker = document.getElementById("input_caretaker").value
+            events[this_date] = [0, 0, `${caretaker}`]
+            colorCodeCalendar()
+            break;
+      }
 }
 
 function addEventToDict(day) {
